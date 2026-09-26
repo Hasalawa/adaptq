@@ -142,7 +142,11 @@ public:
         };
     }
 
-    void release(StorageSlot slot) override {
+    void release(StorageSlot slot) {
+    free_slot(slot);
+}
+
+void free_slot(StorageSlot slot) override {
         if (slot < static_cast<StorageSlot>(capacity_)) {
             slot_lengths_[slot] = 0;
             scale_[slot] = 0.0f;
